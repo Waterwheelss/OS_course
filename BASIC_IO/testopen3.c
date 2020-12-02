@@ -19,7 +19,6 @@ main()
 
    fd=open(filename,0);
    printf("The file descriptor is %d.\n",fd);
-   close(fd);
    }
 
 
