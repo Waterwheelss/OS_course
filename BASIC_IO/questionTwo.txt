@@ -1,0 +1,14 @@
+Script started on Thu 03 Dec 2020 12:16:53 AM CST
+]0;test05@telnet: ~/waterwheel/OS_course/BASIC_IOtest05@telnet:~/waterwheel/OS_course/BASIC_IO$ gcc waue[K[K[K[Ka[KquestionTwo.c
+]0;test05@telnet: ~/waterwheel/OS_course/BASIC_IOtest05@telnet:~/waterwheel/OS_course/BASIC_IO$ /.[K[K./a.out
+If you don't close the first file first, then open the second file.
+The first file descriptor is 3.
+The second file descriptor is 4.
+
+If you close the first file first, then open the second file.
+The first file descriptor is 3.
+The second file descriptor is 3.
+]0;test05@telnet: ~/waterwheel/OS_course/BASIC_IOtest05@telnet:~/waterwheel/OS_course/BASIC_IO$ exit
+exit
+
+Script done on Thu 03 Dec 2020 12:17:25 AM CST
