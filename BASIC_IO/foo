@@ -1,0 +1,9 @@
+total 20K
+-rwxr-xr-x 1 ghhwang faculty 7295 2013-12-02 14:31 a.out
+-rw-r--r-- 1 ghhwang faculty    0 2013-12-02 14:31 kkk
+-rw-r--r-- 1 ghhwang faculty  377 2008-10-22 11:29 testopen2.c
+-rw-r--r-- 1 ghhwang faculty  268 2008-12-15 15:12 testopen3.c
+-rw-r--r-- 1 ghhwang faculty  392 2007-12-03 15:17 testopen.c
+-rw-r--r-- 1 ghhwang faculty  760 2006-11-06 09:57 testopenfork.c
+-rw-r--r-- 1 ghhwang faculty  429 2007-10-22 10:40 testread.c
+-rw-r--r-- 1 ghhwang faculty  156 2012-11-19 15:46 teststandardIO.c

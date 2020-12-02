@@ -1,0 +1,6 @@
+Try to execute:
+./test|cat
+./testflush|cat
+
+
+gcc forkpty.c -lutil

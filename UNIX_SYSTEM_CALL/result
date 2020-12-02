@@ -1,0 +1,4 @@
+root     15560  0.0  0.3  89376  3908 ?        Ss   09:08   0:00 sshd: ghhwang [priv]
+ghhwang  15725  0.0  0.1  89376  1672 ?        S    09:08   0:00 sshd: ghhwang@pts/2 
+ghhwang  15726  0.0  0.5  16580  6112 pts/2    Ss   09:08   0:00 -bash
+ghhwang  16831  0.0  0.1   9752  1192 pts/2    R+   09:40   0:00 ps axu

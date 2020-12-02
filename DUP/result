@@ -1,0 +1,85 @@
+Script started on Mon 16 Dec 2013 03:24:52 PM CST
+ghhwang@telnet:~/OS_course/DUP$ cat who_wc.c
+ /* who_wc.c  */
+     /* demonstrates a one-way pipe between two processes.
+        This program implements the equivalent of the shell command:
+
+        who | wc -l
+
+        which will count the number of users logged in.
+     */
+
+     #include <stdio.h>
+
+     /* Define some manifest constants to make the code more understandable */
+
+     #define ERR    (-1)             /* indicates an error condition */
+     #define READ   0                /* read end of a pipe */
+     #define WRITE  1                /* write end of a pipe */
+     #define STDIN  0                /* file descriptor of standard in */
+     #define STDOUT 1                /* file descriptor of standard out */
+
+     int main()
+     {
+        int   pid_1,               /* will be process id of first child - who */
+              pid_2,               /* will be process id of second child - wc */
+              pfd[2];              /* pipe file descriptor table.             */
+
+        if ( pipe ( pfd ) == ERR )              /* create a pipe  */
+              {                                 /* must do before a fork */
+              perror (" ");
+              exit (ERR);
+              }
+        if (( pid_1 = fork () ) == ERR)        /* create 1st child   */
+              {
+              perror (" ");
+              exit (ERR);
+              }
+        if ( pid_1 != 0 )                      /* in parent  */
+              {
+              if (( pid_2 = fork () ) == ERR)     /* create 2nd child  */
+                    {
+                    perror (" ");
+                    exit (ERR);
+                    }
+              if ( pid_2 != 0 )                   /* still in parent  */
+                    {
+                    close ( pfd [READ] );         /* close pipe in parent */
+                    close ( pfd [WRITE] );        /* conserve file descriptors */
+                    wait (( int * ) 0);           /* wait for children to die */
+                    wait (( int * ) 0);
+                    }
+              else                                /* in 2nd child   */
+                    {
+                    close (STDIN);           /* close standard input */
+                    dup ( pfd [READ] );      /* read end of pipe becomes stdin */
+                    close ( pfd [READ] );            /* close unneeded I/O  */
+                    close ( pfd [WRITE] );           /* close unneeded I/O   */
+                    execl ("/usr/bin/wc", "wc",  (char *) NULL);
+                    }
+              }
+        else                                      /* in 1st child   */
+              {
+              close (STDOUT);            /* close standard out */
+              dup ( pfd [WRITE] );       /* write end of pipes becomes stdout */
+              close ( pfd [READ] );                 /* close unneeded I/O */
+              close ( pfd [WRITE] );                /* close unneeded I/O */
+              execl ("/usr/bin/who", "ls",(char *) NULL);
+              }
+        exit (0);
+     }
+
+ghhwang@telnet:~/OS_course/DUP$ gcc who_wc.c 
+who_wc.c: In function ‘main’:
+who_wc.c:29:15: warning: incompatible implicit declaration of built-in function ‘exit’
+who_wc.c:34:15: warning: incompatible implicit declaration of built-in function ‘exit’
+who_wc.c:41:21: warning: incompatible implicit declaration of built-in function ‘exit’
+who_wc.c:56:21: warning: incompatible implicit declaration of built-in function ‘execl’
+who_wc.c:65:15: warning: incompatible implicit declaration of built-in function ‘execl’
+who_wc.c:67:9: warning: incompatible implicit declaration of built-in function ‘exit’
+ghhwang@telnet:~/OS_course/DUP$ ./a.out
+      8      40     446
+ghhwang@telnet:~/OS_course/DUP$ exit
+exit
+
+Script done on Mon 16 Dec 2013 03:25:20 PM CST

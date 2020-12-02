@@ -1,0 +1,3 @@
+./writer1&
+sleep 0.5
+./writer2&
